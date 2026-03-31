@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIBO — Recepcionistas Virtuales con IA para Neiva</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Calendly -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -986,7 +989,7 @@
             </a>
         </li>
     </ul>
-    <a href="#contacto" class="nav-cta">Agenda demo gratis</a>
+    <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/10juanmurcia0195/30min'});return false;" class="nav-cta">Agenda demo gratis</a>
 </nav>
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
@@ -1013,7 +1016,7 @@
     </p>
 
     <div class="cta-group">
-        <a href="#contacto" class="btn-primary">Quiero mi recepcionista virtual</a>
+        <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/10juanmurcia0195/30min'});return false;" class="btn-primary">Quiero mi recepcionista virtual</a>
         <a href="#como-funciona" class="btn-ghost">Ver cómo funciona →</a>
     </div>
 
@@ -1518,7 +1521,9 @@
 
             <div id="success-msg">
                 <h3><span class="grad">¡Mensaje enviado!</span></h3>
-                <p>Nos pondremos en contacto contigo en menos de 24 horas para agendar tu demo personalizada.</p>
+                <p>Recibimos tu información. Agenda ahora mismo tu demo en el horario que mejor te quede.</p>
+                <br>
+                <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/10juanmurcia0195/30min'});return false;" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">📅 Agendar mi demo ahora</a>
             </div>
         </div>
     </div>
@@ -1673,7 +1678,7 @@ revealEls.forEach(el => revealObs.observe(el));
 /* ──────────────────────────────
    FORM SUBMIT
 ────────────────────────────── */
-const WEBHOOK_URL = 'https://vibo.com/TU-FORMULARIO-AQUI';
+const WEBHOOK_URL = 'https://juanmurcia1001.app.n8n.cloud/webhook/vibo-form';
 
 document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -1693,9 +1698,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        mode: 'no-cors'
-    }).finally(() => {
+        body: JSON.stringify(data)
+    }).catch(() => {}).finally(() => {
         this.style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
     });
